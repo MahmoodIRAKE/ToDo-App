@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a69c9b60b2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>To Do App</title>
+</head>
+<style>
+    body {
+        display: flex;
+        margin: 0;
+        background-color: rgb(240, 241, 241);
+    }
+    
+    .workers {
+        display: flex;
+        width: 25%;
+        margin-right: 3%;
+        flex-direction: column;
+        align-items: center;
+        color: rgb(110, 131, 223);
+        font-size: 24px;
+        background-color: #fff;
+    }
+    
+    .workers-list {
+        list-style: none;
+        width: 100%;
+    }
+    
+    .check1 {
+        height: 1.15em;
+        width: 1.15em;
+    }
+    
+    .workers-list li {
+        border-bottom: 0.5px solid rgb(218, 213, 213);
+        width: 100%;
+        height: 3em;
+    }
+    
+    .todo {
+        display: flex;
+        width: 70%;
+        flex-direction: column;
+    }
+    
+    .todo-list {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .todo-1 {
+        margin-top: 1%;
+        background-color: #fff;
+    }
+    
+    .inner-todo {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        color: rgb(110, 131, 223);
+        border-bottom: 0.5px solid rgb(218, 213, 213);
+        font-size: 30px;
+    }
+    
+    .inner-todo i {
+        color: red;
+    }
+    
+    .btns {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 1%;
+    }
+    
+    .btns button,
+    .input button,
+    h2 {
+        border-radius: 10px;
+        width: 300px;
+        height: 40px;
+        font-size: 18px;
+        color: white;
+        font-weight: bold;
+        background-color: cadetblue;
+        text-align: center;
+    }
+</style>
+<script>
+    function AddMission(id) {
+        let value = document.querySelector('#mission-input').value;
+        if (value === '' || value === null) return;
+        let workers = JSON.parse(localStorage.getItem('workers'));
+
+        let mission = {
+            name: value,
+            isChecked: false,
+            id: Math.floor(Math.random() * 1000),
+        }
+
+        workers[id].missions[mission.id] = mission
+        localStorage.removeItem('workers');
+        localStorage.setItem('workers', JSON.stringify(workers));
+    }
+
+    function removeMission(id) {
+        console.log(id)
+        let workers = JSON.parse(localStorage.getItem('workers'));
+        Object.values(workers).forEach(element => {
+            if (Object.keys(element.missions).find(item => item === id)) {
+
+            }
+        });
+        localStorage.removeItem('workers');
+        localStorage.setItem('workers', JSON.stringify(workers));
+    }
+</script>
+
+<body>
+    <div class="workers">
+        <div class="input">
+            <form class="w3-container w3-card-4" action="">
+
+                <label class="w3-text-blue"><b>Enter Worker Name</b></label>
+                <input id="worker-input" class="w3-input w3-border" type="text"></p>
+            </form>
+
+            <button id="worker-btn btns">Add +</button>
+        </div>
+        <ul class='workers-list'>
+
+        </ul>
+    </div>
+    <div class="todo">
+        <form class="w3-container w3-card-4" action="">
+
+            <label class="w3-text-blue"><b>Write To Do</b></label>
+            <input id="mission-input" class="w3-input w3-border" type="text"></p>
+        </form>
+
+        <div class="todo-list">
+
+        </div>
+    </div>
+</body>
+
+<script src="./main.js" defer type="module">
+</script>
+
+</html>
